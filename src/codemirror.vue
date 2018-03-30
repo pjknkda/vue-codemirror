@@ -102,9 +102,10 @@
           this.cminstance = this.codemirror
           this.cminstance.setValue(this.code || this.value || this.content)
         }
-        this.cminstance.on('change', cm => {
+        this.cminstance.on('change', (cm, obj) => {
           this.content = cm.getValue()
           if (this.$emit) {
+            this.$emit('change', cm, obj)
             this.$emit('input', this.content)
           }
         })
